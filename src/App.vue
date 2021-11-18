@@ -27,24 +27,17 @@
           nav
           dense
         >
-          <v-list-item link>
+          <v-list-item 
+            v-for= "item in items"
+            :key="item.title"
+            link
+          >
             <v-list-item-icon>
-              <v-icon>mdi-folder</v-icon>
+              <v-icon>mdi-{{item.icon}}</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>My Files</v-list-item-title>
+            <v-list-item-title>{{item.title}}</v-list-item-title>
           </v-list-item>
-          <v-list-item link>
-            <v-list-item-icon>
-              <v-icon>mdi-account-multiple</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Shared with me</v-list-item-title>
-          </v-list-item>
-          <v-list-item link>
-            <v-list-item-icon>
-              <v-icon>mdi-star</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Starred</v-list-item-title>
-          </v-list-item>
+          
         </v-list>
       </v-navigation-drawer>
 
