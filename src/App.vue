@@ -4,19 +4,19 @@
         v-model="drawer"
         app
       >
-        <v-list>
+        <v-list v-model="user">
           <v-list-item class="px-2">
             <v-list-item-avatar>
-              <v-img src="https://randomuser.me/api/portraits/women/85.jpg"></v-img>
+              <v-img :src="user.picture"></v-img>
             </v-list-item-avatar>
           </v-list-item>
 
           <v-list-item link>
             <v-list-item-content>
               <v-list-item-title class="text-h6">
-                Sandra Adams
+                {{user.name}}
               </v-list-item-title>
-              <v-list-item-subtitle>sandra_a88@gmail.com</v-list-item-subtitle>
+              <v-list-item-subtitle>{{user.email}}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -62,6 +62,25 @@
 
 <script>
   export default {
-    data: () => ({ drawer: null }),
+    data: () => ({ 
+      drawer: null,
+      user: {
+        name: 'Satoro Gojo',
+        email: 'satoro_gojo@jujutsu.kaisen.com',
+        picture: 'profile.jpg'
+      },
+      items: [
+        {
+          title: 'Home',
+          icon: 'home',
+          path: '/'
+        },
+        {
+          title: 'About',
+          icon: 'information-variant',
+          path: '/about'
+        }
+      ]
+    }),
   }
 </script>
