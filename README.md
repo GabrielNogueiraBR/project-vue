@@ -1,6 +1,9 @@
-# project-vue
+# ✔️ Project Vue 
+Project developed using Vue and Vuetify.js for the Web development discipline.
+## 👀 Preview Layout Project 
 
-## Project setup
+![Layout project](public/layout.png)
+## 🔧 Project setup
 ```
 npm install
 ```
@@ -23,7 +26,3 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-
-## Preview Layout Project
-
-![Layout project](public/layout.png)
