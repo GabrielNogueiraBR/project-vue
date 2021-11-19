@@ -30,6 +30,7 @@
           <v-list-item 
             v-for= "item in items"
             :key="item.title"
+            :to="item.path"
             link
           >
             <v-list-item-icon>
@@ -44,12 +45,21 @@
     <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Application</v-toolbar-title>
+      <v-toolbar-title>Vue Project</v-toolbar-title>
     </v-app-bar>
 
     <v-main>
-      <!--  -->
+      <router-view></router-view>
     </v-main>
+
+    <v-footer padless>
+      <v-col
+        class="text-center"
+        cols="12"
+      >
+        {{ new Date().getFullYear() }} — <strong>Gabriel Nogueira</strong>
+      </v-col>
+    </v-footer>
   </v-app>
 </template>
 
