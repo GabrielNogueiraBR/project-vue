@@ -11,7 +11,7 @@
     <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Vue Project</v-toolbar-title>
+      <v-toolbar-title>{{myApplicationTitle}}</v-toolbar-title>
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" app>
@@ -100,5 +100,10 @@ export default {
       },
     ],
   }),
+  computed: {
+    myApplicationTitle(){
+      return this.$store.getters.bigTitle
+    }
+  },
 };
 </script>
