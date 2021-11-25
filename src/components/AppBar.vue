@@ -9,11 +9,11 @@
 
         <v-toolbar-items
           v-for="item in menuItems"
-          :key="item.title"
-          :to="item.path"
-          link
-        >
-          <v-btn icon>
+          :key="item.title">
+          <v-btn 
+            :to="item.path"
+            link
+            icon>
             <v-icon>mdi-{{item.icon}}</v-icon>
           </v-btn>
         </v-toolbar-items>
