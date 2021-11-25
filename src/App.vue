@@ -13,7 +13,7 @@
 
       <v-toolbar-title>{{myApplicationTitle}}</v-toolbar-title>
     </v-app-bar> -->
-    <AppBar :title="myApplicationTitle" :drawer="drawer" @changeDrawer="changeDrawer($event)"></AppBar>
+    <AppBar :title="myApplicationTitle" :drawer="drawer" @changeDrawer="changeDrawer($event)" :menuItems="menuItems"></AppBar>
 
     <v-navigation-drawer v-model="drawer" app>
       <v-list v-model="user">
@@ -37,7 +37,7 @@
 
       <v-list nav dense>
         <v-list-item
-          v-for="item in items"
+          v-for="item in menuItems"
           :key="item.title"
           :to="item.path"
           link
@@ -74,22 +74,13 @@ export default {
       email: "satoro_gojo@jujutsu.kaisen.com",
       picture: "profile.jpg",
     },
-    items: [
-      {
-        title: "Home",
-        icon: "home",
-        path: "/",
-      },
-      {
-        title: "About",
-        icon: "information-variant",
-        path: "/about",
-      },
-    ],
   }),
   computed: {
     myApplicationTitle(){
       return this.$store.getters.bigTitle
+    },
+    menuItems(){
+      return this.$store.getters.getMenuItems
     }
   },
   components:{
