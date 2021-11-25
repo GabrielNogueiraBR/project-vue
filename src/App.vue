@@ -8,11 +8,12 @@
       <span>20:30</span>
     </v-system-bar>
 
-    <v-app-bar app>
+    <!-- <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title>{{myApplicationTitle}}</v-toolbar-title>
-    </v-app-bar>
+    </v-app-bar> -->
+    <AppBar :title="myApplicationTitle" :drawer="drawer" @changeDrawer="changeDrawer($event)"></AppBar>
 
     <v-navigation-drawer v-model="drawer" app>
       <v-list v-model="user">
@@ -79,6 +80,8 @@
 </template>
 
 <script>
+import AppBar from "@/components/AppBar"
+
 export default {
   data: () => ({
     drawer: null,
@@ -105,5 +108,13 @@ export default {
       return this.$store.getters.bigTitle
     }
   },
+  components:{
+    AppBar
+  },
+  methods:{
+    changeDrawer: function(newValue){
+      this.drawer = newValue;
+    }
+  }
 };
 </script>
