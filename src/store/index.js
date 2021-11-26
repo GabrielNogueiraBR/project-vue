@@ -13,6 +13,11 @@ export default new Vuex.Store({
         path: "/",
       },
       {
+        title: "Contacts",
+        icon: "account-group",
+        path: "/contacts",
+      },
+      {
         title: "Welcome to Vuetify",
         icon: "vuetify",
         path: "/welcome",
