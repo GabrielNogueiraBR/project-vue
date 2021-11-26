@@ -1,8 +1,11 @@
 # ✔️ Project Vue 
 Project developed using Vue and Vuetify.js for the Web development discipline.
-## 👀 Preview Layout Project 
+## 👀 Layout Home
 
 ![Layout project](public/layout.png)
+## 👀 Layout Contact
+
+![Layout project](public/contacts.png)
 ## 🔧 Project setup
 ```
 npm install
