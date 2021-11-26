@@ -10,13 +10,13 @@
                   >
                     <v-list-item-avatar color="grey darken-1"
                     >
-                      <img
+                      <v-img
                         :src="contact.photo"
-                      >
+                      ></v-img>
                     </v-list-item-avatar>
 
                     <v-list-item-content>
-                      <v-list-item-title>Name {{ contact.name }}</v-list-item-title>
+                      <v-list-item-title>{{ contact.name }}</v-list-item-title>
                     </v-list-item-content>
                   </v-list-item>
 

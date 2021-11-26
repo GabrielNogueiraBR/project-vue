@@ -22,13 +22,19 @@ export default {
             {
                 category: 'Best Friends',
                 users: [
+                    {name: 'Kento Nanami', photo: './photos/kento-nanami.jpg'},
                     {name: 'Yuji Itadori', photo: './photos/yuji-itadori.jpg'},
+                    {name: 'Megumi Fushiguro', photo: './photos/megumi-fushiguro.jpg'},
+                    
                 ]
             },
             {
                 category: 'Friends',
                 users: [
                     {name: 'Suguru Geto', photo: './photos/suguru-geto.jpg'},
+                    {name: 'Mei Mei', photo: './photos/mei-mei.jpg'},
+                    {name: 'Panda', photo: './photos/panda.jpg'},
+                    {name: 'Aoi Toudou', photo: './photos/aoi-toudou.jpg'},
                 ]
             },
         ],
