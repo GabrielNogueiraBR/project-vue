@@ -28,131 +28,46 @@ export default new Vuex.Store({
         path: "/about",
       },
     ],
-    episodes: [
-      {
-        id: 1,
-        title: "Episódio 1",
-        img: "./thumbs/jujutsu-kaisen-episodio-1.jpg",
-      },
-      {
-        id: 2,
-        title: "Episódio 2",
-        img: "./thumbs/jujutsu-kaisen-episodio-2.jpg",
-      },
-      {
-        id: 3,
-        title: "Episódio 3",
-        img: "./thumbs/jujutsu-kaisen-episodio-3.jpg",
-      },
-      {
-        id: 4,
-        title: "Episódio 4",
-        img: "./thumbs/jujutsu-kaisen-episodio-4.jpg",
-      },
-      {
-        id: 5,
-        title: "Episódio 5",
-        img: "./thumbs/jujutsu-kaisen-episodio-5.jpg",
-      },
-      {
-        id: 6,
-        title: "Episódio 6",
-        img: "./thumbs/jujutsu-kaisen-episodio-6.jpg",
-      },
-      {
-        id: 7,
-        title: "Episódio 7",
-        img: "./thumbs/jujutsu-kaisen-episodio-7.jpg",
-      },
-      {
-        id: 8,
-        title: "Episódio 8",
-        img: "./thumbs/jujutsu-kaisen-episodio-8.jpg",
-      },
-      {
-        id: 9,
-        title: "Episódio 9",
-        img: "./thumbs/jujutsu-kaisen-episodio-9.jpg",
-      },
-      {
-        id: 10,
-        title: "Episódio 10",
-        img: "./thumbs/jujutsu-kaisen-episodio-10.jpg",
-      },
-      {
-        id: 11,
-        title: "Episódio 11",
-        img: "./thumbs/jujutsu-kaisen-episodio-11.jpg",
-      },
-      {
-        id: 12,
-        title: "Episódio 12",
-        img: "./thumbs/jujutsu-kaisen-episodio-12.jpg",
-      },
-      {
-        id: 13,
-        title: "Episódio 13",
-        img: "./thumbs/jujutsu-kaisen-episodio-13.jpg",
-      },
-      {
-        id: 14,
-        title: "Episódio 14",
-        img: "./thumbs/jujutsu-kaisen-episodio-14.jpg",
-      },
-      {
-        id: 15,
-        title: "Episódio 15",
-        img: "./thumbs/jujutsu-kaisen-episodio-15.jpg",
-      },
-      {
-        id: 16,
-        title: "Episódio 16",
-        img: "./thumbs/jujutsu-kaisen-episodio-16.jpg",
-      },
-      {
-        id: 17,
-        title: "Episódio 17",
-        img: "./thumbs/jujutsu-kaisen-episodio-17.jpg",
-      },
-      {
-        id: 18,
-        title: "Episódio 18",
-        img: "./thumbs/jujutsu-kaisen-episodio-18.jpg",
-      },
-      {
-        id: 19,
-        title: "Episódio 19",
-        img: "./thumbs/jujutsu-kaisen-episodio-19.jpg",
-      },
-      {
-        id: 20,
-        title: "Episódio 20",
-        img: "./thumbs/jujutsu-kaisen-episodio-20.jpg",
-      },
-      {
-        id: 21,
-        title: "Episódio 21",
-        img: "./thumbs/jujutsu-kaisen-episodio-21.jpg",
-      },
-      {
-        id: 22,
-        title: "Episódio 22",
-        img: "./thumbs/jujutsu-kaisen-episodio-22.jpg",
-      },
-      {
-        id: 23,
-        title: "Episódio 23",
-        img: "./thumbs/jujutsu-kaisen-episodio-23.jpg",
-      },
-      {
-        id: 24,
-        title: "Episódio 24",
-        img: "./thumbs/jujutsu-kaisen-episodio-24.jpg",
-      },
-    ],
+    episodes: null,
+    contacts: null
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    SET_EPISODES(state,payload){
+      state.episodes = payload;
+    },
+    SET_CONTACTS(state,payload){
+      state.contacts = payload;
+    }
+  },
+  actions: {
+    fetchEpisodes() {
+      fetch('./data/db.json')
+        .then((res) => {
+          if(!res.ok)
+            throw Error('Could not get episodes');
+          
+          return res.json();
+        })
+        .then((data) => {
+          const payload = data.episodes;
+          this.commit('SET_EPISODES',payload);
+        })
+        .catch((error) => console.log(error));
+    },
+    fetchContacts(){
+      fetch('./data/db.json')
+        .then((res)=>{
+          if(!res.ok)
+            throw Error('Could not get contacts from database');
+          
+            return res.json();
+        })
+        .then((data)=> {
+          const payload = data.contacts;
+          this.commit('SET_CONTACTS',payload);
+        })
+    }
+  },
   modules: {},
   getters: {
     bigTitle(state) {
@@ -164,5 +79,25 @@ export default new Vuex.Store({
     allEpisodes(state) {
       return state.episodes;
     },
+    allContacts(state){
+      return state.contacts;
+    },
+    getAllFriends(state){
+      return state.contacts.filter((contact) => contact.category === 'Friends');
+    },
+    getAllBestFriends(state){
+      return state.contacts.filter((contact) => contact.category === 'Best Friends');
+    },
+    getContactsByCategory(state){
+      if(state.contacts !== null){
+        const categories = state.contacts
+          .map((contact)=>contact.category)
+          .filter((value,index,array) => array.indexOf(value) === index);
+        
+        return categories.map((category)=>{
+          return {category: category, users: state.contacts.filter((contact) => contact.category === category)};
+        })
+      }
+    }
   },
 });
