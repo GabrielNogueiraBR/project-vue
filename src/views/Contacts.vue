@@ -17,30 +17,17 @@
 import ContactCard from "@/components/ContactCard"
 
 export default {
-    data: () => ({
-        contacts : [
-            {
-                category: 'Best Friends',
-                users: [
-                    {name: 'Kento Nanami', photo: './photos/kento-nanami.jpg'},
-                    {name: 'Yuji Itadori', photo: './photos/yuji-itadori.jpg'},
-                    {name: 'Megumi Fushiguro', photo: './photos/megumi-fushiguro.jpg'},
-                    
-                ]
-            },
-            {
-                category: 'Friends',
-                users: [
-                    {name: 'Suguru Geto', photo: './photos/suguru-geto.jpg'},
-                    {name: 'Mei Mei', photo: './photos/mei-mei.jpg'},
-                    {name: 'Panda', photo: './photos/panda.jpg'},
-                    {name: 'Aoi Toudou', photo: './photos/aoi-toudou.jpg'},
-                ]
-            },
-        ],
-    }),
     components: {
         ContactCard,
+    },
+    computed:{
+        contacts(){
+            return this.$store.getters.getContactsByCategory;
+        },
+    },
+    created(){
+        if(this.$store.getters.allContacts === null)
+           this.$store.dispatch("fetchContacts");
     }
 }
 </script>
